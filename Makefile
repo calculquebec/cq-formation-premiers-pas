@@ -1,22 +1,17 @@
 # ############################
 # LIST OF OBJECTS/EXES
 # ############################
-EXES = serie.exe serie.mpi.exe serie.omp.exe
+EXES = filterImage.exe
+
+#MODULE_CMDS = module load libs/boost libs/image_magick
 
 CPP = g++
-CPPFLAGS = -g --std=c++11 -lboost_program_options
+CPPFLAGS = -g --std=c++11 -lboost_program_options -lMagick++-6.Q16 -fopenmp
 GLOBAL_DEPEND = Makefile
 all:: $(EXES)
 clean:
 	rm -rf $(EXES) $(OBJECTS) *.o *.openss *.txt *.exe *.bin
 
-%.exe: code/%.cpp $(GLOBAL_DEPEND)
-	$(MODULE_CMDS) $(CPP) $(CPPFLAGS) code/$*.cpp -o $*.exe $(DEFINES)
-
-%.omp.exe: code/%.cpp $(GLOBAL_DEPEND)
-	$(MODULE_CMDS) $(CPP) $(CPPFLAGS) -fopenmp code/$*.cpp -o $*.omp.exe $(DEFINES)
-
-%.mpi.exe: code/%.mpi.cpp $(GLOBAL_DEPEND)
-	$(MODULE_CMDS) mpic++ $(CPPFLAGS) code/$*.mpi.cpp -o $*.mpi.exe $(DEFINES)
-
+filterImage.exe: code/blackwhite.cpp $(GLOBAL_DEPEND)
+	mpic++ $(CPPFLAGS) $< -o $@ $(DEFINES)
 
