@@ -12,6 +12,6 @@ all:: $(EXES)
 clean:
 	rm -rf $(EXES) $(OBJECTS) *.o *.openss *.txt *.exe *.bin
 
-filterImage.exe: code/blackwhite.cpp $(GLOBAL_DEPEND)
+filterImage.exe: code/filterImage.cpp $(GLOBAL_DEPEND)
 	mpic++ $(CPPFLAGS) $< -o $@ $(DEFINES)
 
