@@ -13,6 +13,6 @@ module load apps/gnu-parallel
 #####
 # TODO: Ajouter la directive parallel avec les bons fichiers et arguments
 #####
-parallel ../filterImage.exe --filters grayscale --files ../photos/{1} ::: $(ls ../photos)
+parallel ../filterImage.exe --filters {2} --files ../photos/{1} ::: $(ls ../photos) ::: grayscale negate
 
 

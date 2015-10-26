@@ -3,6 +3,7 @@
 #include <iostream>
 #include <boost/program_options.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
 #include <iomanip>
 #include "mpi.h"
 #include <Magick++.h>
@@ -11,12 +12,14 @@
 using namespace std;
 using namespace Magick;
 using namespace boost;
+using namespace boost::filesystem;
 
 string applyFilter(const string & filter, const string & filename)
 {
 	int comm_rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
-	string outfilename = filter + "_" + filename;
+    path pathname(filename);
+	string outfilename = pathname.stem().string() + "_" + filter + pathname.extension().string();
 	try {
 		cout << "Application du filtre " << filter << " sur l'image " << filename << endl;
 		Image image;

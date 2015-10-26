@@ -3,16 +3,16 @@
 #PBS -l nodes=1:ppn=8
 #PBS -l walltime=16:00
 
-module load libs/boost 
+module load compilers/gcc libs/boost libs/image_magick
 cd ${PBS_O_WORKDIR}
 ####
 # TODO: Charger le module gnu-parallel
 ####
 
 
-
 #####
 # TODO: Ajouter la directive parallel avec les bons fichiers et arguments
 #####
-parallel ../serie.exe -p ... -n ... --ralentir :::: fichier1 :::: fichier2
+../filterImage.exe --filters grayscale --files ../photos/<fichier.png>
+
 

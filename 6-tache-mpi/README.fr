@@ -1,0 +1,37 @@
+L'utilitaire filterImage.exe utilisé dans les exercices précédent est en fait un exécutable qui peut être
+utilisé en parallèle sur plusieurs noeuds avec MPI.
+
+==== MPI ====
+Une application MPI est une application qui peut utiliser plusieurs noeuds de calcul en parallèle. MPI signifie
+"Message Passing Interface". Écrire une application MPI est en général plutôt complexe. Par contre, en utiliser une
+est simple. Il suffit généralement de lancer l'application avec la commande "mpiexec", par exemple :
+
+  mpiexec ../filterImage.exe ....
+
+Notez que si l'application en question n'a pas été programmée pour tirer profit de MPI, elle sera tout simplement
+lancée plusieurs fois, avec les mêmes paramètres.
+
+==== Instructions ====
+L'application filterImage.exe utilise MPI pour traiter plusieurs images en même temps. Comme le répertoire "../photos"
+contient 30 images, nous voudrons utiliser 30 coeurs de calcul afin de les traiter plus rapidement.
+
+  * Modifier submit.sh pour demander 4 noeuds de calcul (32 coeurs)
+  * Lancer filterImage.exe avec mpiexec
+  * Soumettre la tâche avec la commande
+    msub submit.sh
+  * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
+    votre répertoire.
+
+==== Bonus ====
+Le filtre choisi dans l'exemple est "monochrome" (noir et blanc). Il est possible d'obtenir des images noir et blanc
+avec une meilleure définition si l'on ajoute du bruit à l'image originale avant de la transformer en noir et blanc.
+L'exécutable filterImage.exe permet d'appliquer plusieurs filtres successifs à la même image. Essayez d'obtenir une
+meilleure version noir et blanc des images originales en remplaçant
+
+  --filters monochrome
+
+par
+  --filters add_noise monochrome
+
+
+

@@ -1,17 +1,17 @@
 #!/bin/bash
 #PBS -A colosse-users
 ##### 
-# TODO: Changer le nombre de noeuds utilisés pour en utiliser 2
+# TODO: Changer le nombre de noeuds utilisés pour en utiliser 4
 #####
 #PBS -l nodes=1:ppn=8
 #PBS -l walltime=16:00
 
-module load libs/boost
+module load compilers/gcc libs/boost libs/image_magick
 cd ${PBS_O_WORKDIR}
 
 ####
-# TODO: Appeler l'exécutable ../serie.mpi.exe avec mpiexec
+# TODO: Appeler l'exécutable ../filterImage.exe avec mpiexec
 ####
- ../serie.exe -p 2 -n 1000000000 
+ ../filterImage.exe --filters monochrome --files ../photos/*
 
 

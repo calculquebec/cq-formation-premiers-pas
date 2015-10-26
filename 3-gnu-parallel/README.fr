@@ -1,0 +1,49 @@
+Comme dans l'exercice #2, on veut appliquer le filtre "grayscale" à plusieurs images.
+Afin d'utiliser la totalité des coeurs d'un noeud de calcul, nous voulons lancer l'exécutable
+plusieurs fois en parallèle.
+
+Par contre, plutôt que d'utiliser le caractère "&" et la commande "wait", nous allons utiliser un outil
+beaucoup plus flexible, nommé GNU parallel.
+
+==== GNU parallel ====
+GNU parallel est un outil très puissant pour exécuter des tâches en parallèle. Il supporte deux principaux
+formats d'entrée pour spécifier une liste de paramètres à varier :
+  * liste de fichiers/de valeurs sur la ligne de commande
+  * liste contenu dans un fichier
+
+Vous pouvez vous référer au wiki de Calcul Québe [https://wiki.calculquebec.ca/w/GNU_Parallel] pour les
+options de base, ou à la documentation officielle [http://www.gnu.org/software/parallel/man.html] pour les
+options avancées.
+
+Pour cet exercice, nous utiliserons la capture de la sortie de la commande "ls" avec $( ) pour créer une liste
+de fichiers à traiter. Par exemple, pour afficher le contenu du répertoire "../photos" en parallèle, on pourrait
+utiliser GNU parallel de la façon suivante :
+
+  parallel echo {1} ::: $(ls ../photos)
+
+Dans cette commande, {1} identifie la première variable. L'opérateur ":::" sépare la commande des variables.
+On pourrait avoir plusieurs variables ({1}, {2}, etc) en ajoutant des opérateurs ":::" à la fin de la
+commande.
+
+Sur les serveurs de Calcul Québec, il faut généralement charger un module afin de pouvoir utiliser la commande
+parallel.
+
+==== Instructions ====
+Nous allons utiliser la commande parallel pour transformer la totalité des photos du répertoire "../photos".
+
+  * Modifier submit.sh pour charger le module apps/gnu-parallel, puis utiliser la commande parallel et
+    la liste des fichiers du répertoire "../photos".
+  * Soumettre la tâche avec la commande
+    msub submit.sh
+  * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
+    votre répertoire.
+
+==== Instructions avancées ====
+Vous pouvez aussi écrire une tâche qui appliquerait à la fois le filtre "grayscale" et le filtre "negate"
+aux images.
+
+==== Pas besoin de spécifier le nombre de tâches simultanées ? ====
+Par défaut, GNU parallel suppose que les tâches à exécuter utilisent un seul coeur, et lance autant de
+tâches en parallèle que le nombre de coeurs du serveur utilisé. Vous pouvez changer ce comportement avec
+l'option "-j"   (voir la documentation de parallel pour davantage d'informations).
+

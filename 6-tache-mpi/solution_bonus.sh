@@ -6,6 +6,6 @@
 module load compilers/gcc libs/boost libs/image_magick
 cd ${PBS_O_WORKDIR}
 
-mpiexec ../filterImage.exe --filters monochrome --files ../photos/*
+mpiexec ../filterImage.exe --filters add_noise monochrome --files ../photos/*
 
 

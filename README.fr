@@ -1,0 +1,53 @@
+
+Le but des exercices dans ce répertoire est de vous familiariser avec la soumission de tâches sur une grappe de calcul. 
+Pour ce faire, nous allons utiliser un outil de conversion d'images nommé "filterImage.exe" et une banque d'images. 
+
+===== Récupérer le jeu de données =====
+Pour les exercices, nous allons utiliser un jeu de données composé de photos haute résolution. Vous devez utiliser Globus
+pour les récupérer et les rapatrier dans votre compte.
+
+Pour ce faire, allez à l'adresse suivante sur votre ordinateur :
+  http://tinyurl.com/cq-photos
+
+Utilisez ensuite le endpoint du serveur de calcul pour transférer les photos vers votre compte de formation.
+
+===== Compilation de l'outil ======
+L'outil de conversion d'image doit d'abord être créé. Pour ce faire, vous devez d'abord charger les bons modules. 
+La compilation requière le compilateur gcc, la bibliothèque boost, et la bibliothèque image magick. Vous pouvez
+trouver les bons modules avec la commande
+
+  module avail
+
+Par exemple, sur Colosse, vous devez charger les modules suivants : 
+
+   module load compilers/gcc libs/boost libs/image_magick
+
+Lorsque les modules sont chargés, vous pouvez compiler l'exécutable avec la commande : 
+
+   make
+
+Cela créera un fichier nommé filterImage.exe dans votre répertoire. C'est cet exécutable qui sera utilisé pour
+chacun des exercices.
+
+===== Structure des exercices =====
+Chacun des exercices est situé dans son propre répertoire. Chaque exercice est accompagné de son fichier README.fr, 
+d'un fichier de départ "submit.sh", et d'un fichier de solution "solution.sh".
+
+Voici pour quel type de tâches chacun des exercices est pertinent : 
+
+  * 1-base
+    Cet exercice est la base de tous les exercices. Nécessaire pour tous les types de tâches.
+
+  * 2-sequentielles-multiples
+    Cet exercice est utile si vous avez des tâches séquentielles d'une durée de plusieurs heures. 
+
+  * 3-gnu-parallel
+    Cet exercice est utile si vous avez des tâches séquentielles très courtes (moins d'une heure). 
+
+  * 4-lot-de-taches
+    Cet exercice est utile si vous avez un très grand nombre de tâches (plusieurs dizaines, voire des centaines ou milliers)
+
+  * 6-tache-mpi
+    Cet exercice est utile si vous avez des tâhces parallélisées avec MPI, qui peuvent utiliser plusieurs noeuds de calcul.
+
+

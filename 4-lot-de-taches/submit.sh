@@ -3,21 +3,20 @@
 #PBS -l nodes=1:ppn=8
 #PBS -l walltime=16:00
 #####
-# TODO: Ajouter la directive de job array
-#PBS ...
+# TODO: Ajouter la bonne option pour le lot de tâches
 #####
 
-module load libs/boost apps/gnu-parallel
+module load compilers/gcc libs/boost libs/image_magick
+module load apps/gnu-parallel
 cd ${PBS_O_WORKDIR}
 
-#####
-# TODO : Calculer L et U pour calculer 8 paramètres pour chaque sous-tâche.
-# Indice 1 : Utiliser $MOAB_JOBARRAYINDEX
-# Indice 2 : Vous pouvez faire des calculs arithmétiques de base avec les doubles parenthèses : $((3+4)) => 7
-#####
-L=...
-U=...
+# Liste des filtres disponibles
+FILTERS=(grayscale edges emboss negate solarize flip flop monochrome add_noise)
 
-parallel ../serie.exe -p {1} ::: $(seq $L $U)
+#####
+# TODO: Utiliser le tableau FILTERS pour sélectionner le bon filtre en fonction de la valeur
+# de MOAB_JOBARRAYINDEX
+#####
+parallel ../filterImage.exe --filters FIXME --files ../photos/{1} ::: $(ls ../photos)
 
 
