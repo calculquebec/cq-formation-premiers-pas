@@ -7,7 +7,7 @@ Pour les exercices, nous allons utiliser un jeu de données composé de photos h
 pour les récupérer et les rapatrier dans votre compte.
 
 Pour ce faire, allez à l'adresse suivante sur votre ordinateur :
-  http://tinyurl.com/cq-photos
+  http://tinyurl.com/cq-photos-20160304
 
 Utilisez ensuite le endpoint du serveur de calcul pour transférer les photos vers votre compte de formation.
 
