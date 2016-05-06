@@ -3,7 +3,7 @@
 #PBS -l nodes=1:ppn=8
 #PBS -l walltime=16:00
 
-module load compilers/gcc libs/boost libs/image_magick
+module load libs/boost libs/image_magick
 cd ${PBS_O_WORKDIR}
 ####
 # TODO: Charger le module gnu-parallel

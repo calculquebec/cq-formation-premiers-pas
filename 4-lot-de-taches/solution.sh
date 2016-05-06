@@ -4,7 +4,7 @@
 #PBS -l walltime=16:00
 #PBS -t [0-8:1]
 
-module load compilers/gcc libs/boost libs/image_magick
+module load libs/boost libs/image_magick
 module load apps/gnu-parallel
 cd ${PBS_O_WORKDIR}
 

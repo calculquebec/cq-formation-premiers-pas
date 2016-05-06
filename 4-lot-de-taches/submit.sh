@@ -6,7 +6,7 @@
 # TODO: Ajouter la bonne option pour le lot de tâches
 #####
 
-module load compilers/gcc libs/boost libs/image_magick
+module load libs/boost libs/image_magick
 module load apps/gnu-parallel
 cd ${PBS_O_WORKDIR}
 
