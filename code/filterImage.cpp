@@ -18,7 +18,7 @@ string applyFilter(const string & filter, const string & filename)
 {
 	int comm_rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
-    path pathname(filename);
+	path pathname(filename);
 	string outfilename = pathname.stem().string() + "_" + filter + pathname.extension().string();
 	try {
 		cout << "Application du filtre " << filter << " sur l'image " << filename << endl;
@@ -63,8 +63,8 @@ int main(int argc, char ** argv)
 	InitializeMagick(*argv);
 
 	int comm_size, comm_rank;
-    MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
-    MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
+	MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
+	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
 
 	string srcdir, dstdir;
 	vector<string> vFilters;
