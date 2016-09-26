@@ -1,0 +1,27 @@
+In this exercise, we submit a job that only prints a message.
+This is to illustrate the concept of job submission.
+
+Instructions :
+  * Modify submit.sh to specify the account "class".
+    This account is only used for the workshop.
+  * Modify submit.sh to specify 1 node with 1 processor for 10 minutes.
+  * Modify submit.sh to specify the job name "ex1"
+  * Submit the job with the following command:
+
+    qsub submit.sh
+
+  * Please note the jobID
+  * Verify the status of your job with:
+
+    qstat -u $USER
+    showq -u $USER  # Your job may appear a few seconds later
+
+  * Verify the result of your job in ex1.o######## and ex1.e########
+
+Additional information:
+  * Compute Canada users are specifying accounts in the form of:
+    xxx-aaa-yyy, where x's and y's are letters, and a's are digits.
+  * The file ex1.e######## contains the standard error output (stderr)
+    of the job. If it failed, you should check in this file.
+  * The file ex1.o######## contains the normal standard output (stdout)
+    of the job. In the case of this exercise, you should see "hello".

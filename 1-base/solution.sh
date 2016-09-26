@@ -1,5 +1,7 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
-echo "bonjour"
+#PBS -A class
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=10:00
+#PBS -N ex1
+
+echo "Hello"
