@@ -15,8 +15,8 @@ directory.
 
 ===== Compiling filterImage.exe ======
 The image processing tool must be built (compiled). To do that, you first have
-to load the appropriate modules. The compilation requires a GCC or Intel
-compiler, OpenMPI, the BOOST library and the Image Magick library.
+to load the appropriate modules. The compilation requires an Intel compiler,
+OpenMPI, the BOOST library and the Image Magick library.
 You can find the appropriate modules with the following commands:
 
    module avail

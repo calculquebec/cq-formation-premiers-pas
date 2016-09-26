@@ -5,7 +5,9 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <iomanip>
+#ifdef USE_MPI
 #include "mpi.h"
+#endif
 #include <Magick++.h>
 #include <random>
 #include <omp.h>
@@ -16,8 +18,6 @@ using namespace boost::filesystem;
 
 string applyFilter(const string & filter, const string & filename)
 {
-	int comm_rank;
-	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
 	path pathname(filename);
 	string outfilename = pathname.stem().string() + "_" + filter + pathname.extension().string();
 	try {
@@ -59,12 +59,16 @@ string applyFilter(const string & filter, const string & filename)
 
 int main(int argc, char ** argv)
 {
+#ifdef USE_MPI
 	MPI_Init(&argc, &argv);
+#endif
 	InitializeMagick(*argv);
 
-	int comm_size, comm_rank;
+	int comm_size = 1, comm_rank = 0;
+#ifdef USE_MPI
 	MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
+#endif
 
 	string srcdir, dstdir;
 	vector<string> vFilters;
@@ -109,6 +113,8 @@ int main(int argc, char ** argv)
 		}
 	}
 
+#ifdef USE_MPI
 	MPI_Finalize();
+#endif
 	return 0;
 }
