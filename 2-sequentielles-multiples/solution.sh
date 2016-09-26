@@ -1,16 +1,16 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
+#PBS -A class
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=10:00
+#PBS -N ex2
 
-module load libs/boost libs/image_magick
+module load iomkl/2015b Boost/1.59.0-Python-2.7.10 ImageMagick/7.0.1-6
 
 cd ${PBS_O_WORKDIR}
-PHOTOS="AG8B9528.png  AG8B9531.png  AG8B9533.png  AG8B9535.png AG8B9538.png  AG8B9540.png  AG8B9544.png  AG8B9546.png"
+PICTURES=$(ls -1 ../../pictures/ | head -12)
 
-for photo in $PHOTOS; do 
-	../filterImage.exe --filters grayscale --files ../photos/$photo   &
+for picture in $PICTURES; do 
+    ../filterImage.exe --filters grayscale --files ../../pictures/$picture &
 done
+
 wait
-
-

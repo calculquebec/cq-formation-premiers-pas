@@ -1,18 +1,20 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
+#PBS -A class
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=10:00
+#PBS -N ex2
 
-module load libs/boost libs/image_magick
+module load iomkl/2015b Boost/1.59.0-Python-2.7.10 ImageMagick/7.0.1-6
 
 cd ${PBS_O_WORKDIR}
-PHOTOS="AG8B9528.png  AG8B9531.png  AG8B9533.png  AG8B9535.png AG8B9538.png  AG8B9540.png  AG8B9544.png  AG8B9546.png"
+PICTURES=$(ls -1 ../../pictures/ | head -12)
 
 ####
-# TODO: Utiliser une boucle pour traiter chacune des photos ci-dessus, dans le repertoire photos, et les rendre en ton de gris.
-# Utiliser la mise en arrière plan avec "&" et "wait" à la fin
+# TODO: Use a for-loop to process all pictures in $PICTURES.
+# Hint: use the command below in your for-loop.
+# Note: Make sure to start all processes in background with "&",
+# and add a "wait" at the end of the script.
 ####
 
-../filterImage.exe --filters grayscale --files ../photos/$photo
-
+    ../filterImage.exe --filters grayscale --files ../../pictures/$picture
 
