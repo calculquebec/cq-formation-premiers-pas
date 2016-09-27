@@ -22,6 +22,10 @@ Par exemple, sur Colosse, vous devez charger les modules suivants :
 
    module load compilers/gcc libs/boost libs/image_magick
 
+Par contre, sur Guillimin, vous devez charger les modules suivants :
+
+   module load iomkl/2015b Boost/1.59.0-Python-2.7.10 ImageMagick/7.0.1-6
+
 Lorsque les modules sont chargés, vous pouvez compiler l'exécutable avec la commande : 
 
    make
