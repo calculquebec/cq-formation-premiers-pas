@@ -2,13 +2,13 @@
 #PBS -A class
 #PBS -l nodes=1:ppn=12
 #PBS -l walltime=10:00
-#PBS -N ex3
+#PBS -N ex3a
 
 module load iomkl/2015b Boost/1.59.0-Python-2.7.10 ImageMagick/7.0.1-6
 ####
 # TODO: Load the GNU-Parallel module
 ####
-module load ...
+module load parallel/20150822
 
 cd ${PBS_O_WORKDIR}
 
@@ -18,4 +18,4 @@ cd ${PBS_O_WORKDIR}
 #       b) Advanced: grayscale only and negate only
 #####
 PICTURES=$(ls -1 ../../pictures/ | head -12)
-../filterImage.exe --filters grayscale --files ../../pictures/$picture
+parallel ../filterImage.exe --filters grayscale --files ../../pictures/{1} ::: $PICTURES

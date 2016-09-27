@@ -1,0 +1,59 @@
+Like in exercise #2, we want to apply the "grayscale" filter to multiple
+pictures. In order to use all cores on a compute node, we want to run multiple
+instances of the executable simultaneously.
+
+This time, instead of using '&' and 'wait', we will use a tool called
+GNU-Parallel, which is more flexible while having a compact syntax.
+
+==== GNU parallel ====
+GNU parallel is a powerful tool to execute parallel tasks. It supports two
+main input formats:
+ - Lists of values on the command line
+ - Lists of values in a file
+
+Please check the Calcul Quebec wiki for basic options:
+ - https://wiki.calculquebec.ca/w/GNU_parallel/en
+Please check the official documentation for advanced options:
+ - http://www.gnu.org/software/parallel/man.html
+
+For this exercise, we will reuse the output of the "ls" command with $( ).
+This will create our list of files for the parallel command.
+For example:
+
+   module load parallel/20150822
+   PICTURES=$(ls -1 ../../pictures/ | head -12)
+   parallel echo {1} ::: $PICTURES
+
+In this example, {1} refers to the first variable in the command template.
+The operator ":::" separates the template from values for the first variable.
+We could define multiple variables ({1}, {2}, etc.) by adding more ":::"
+operators at the end of the parallel command.
+
+On Calcul Quebec cluster, you must load an appropriate module in order to
+use the parallel command.
+ - Guillimin: parallel/20150822
+ - Colosse:   apps/gnu-parallel
+
+==== Instructions ====
+We will use the parallel command to convert the first 12 pictures in
+../../pictures:
+
+  * Modify submit.sh in order to load parallel/20150822
+  * Use the parallel command to process the first 12 pictures
+  * Submit the job with the command
+    qsub submit.sh
+  * Verify that the job generates 12 PNG files in the local folder.
+
+==== Advanced Instructions ====
+Modify you submit.sh in order to process all 12 pictures with the
+"grayscale" filter only, and then with the "negate" filter.
+Basically, you have to define a second variable to your command template.
+
+  * Verify that the job generates 24 PNG files in the local folder.
+
+==== No need to specify the number of simultaneous tasks? ====
+By default, GNU parallel will use one core per task, and it will launch as many
+tasks as there are cores on the system. As soon as a task is completed, the
+next one will start automatically.
+
+You may change the default behavious with the "-j" option (see the man page).
