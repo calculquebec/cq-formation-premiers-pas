@@ -1,19 +1,25 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
-#PBS -t [0-8:1]
+#PBS -A class
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=10:00
+#PBS -N ex4
+#####
+# TODO: Add the PBS job array option
+#####
+#PBS -t 0-8
 
-module load libs/boost libs/image_magick
-module load apps/gnu-parallel
+module load iomkl/2015b Boost/1.59.0-Python-2.7.10 ImageMagick/7.0.1-6
+module load parallel/20150822
 cd ${PBS_O_WORKDIR}
 
-# Liste des filtres disponibles
+# List of filters
 FILTERS=(grayscale edges emboss negate solarize flip flop monochrome add_noise)
 
-#####
-# TODO: Ajouter la directive parallel avec les bons fichiers et arguments
-#####
-parallel ../filterImage.exe --filters ${FILTERS[$MOAB_JOBARRAYINDEX]} --files ../photos/{1} ::: $(ls ../photos)
+# List of pictures
+PICTURES=$(ls -1 ../../pictures/ | tail -4)
 
-
+#####
+# TODO: Use the FILTERS array and select the appropriate filter according
+#       to the value of PBS_ARRAYID
+#####
+parallel ../filterImage.exe --filters ${FILTERS[$PBS_ARRAYID]} --files ../../pictures/{1} ::: $PICTURES
