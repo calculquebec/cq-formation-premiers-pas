@@ -1,0 +1,45 @@
+In this exercise, we want to apply the "grayscale" filter to multiple pictures.
+In order to use all cores on a compute node, we want to run multiple instances
+of the executable simultaneously. To do that, we will use one Bash
+functionality: the '&' operator and the 'wait' command.
+
+==== The '&' operator ====
+Any command line ending with '&' will run in background.
+The command returns immediately, but the executable is still running.
+
+In the following example, both executables will run one after the other:
+  ./executable1
+  ./executable2
+
+With the '&' operator, they will run simultaneously:
+  ./executable1 &
+  ./executable2 &
+
+==== The 'wait' command ====
+From the point of view of the scheduler, a job ends when the last command in
+the script returns. But if the last command returns immediately, the job will
+end while the actual compute task is not done yet. To avoid the premature
+ending, we must use the 'wait' command at the end of the script. The 'wait'
+command will wait until all background tasks are completed.
+
+==== Instructions ====
+We will use both tools (&, wait) in order to convert 12 images to grayscale
+with our filterImage.exe application.
+
+  * Modify submit.sh in order to use a Bash for-loop that will launch image
+    conversions in background. As a reminder:
+      for var in list; do
+        ...
+      done
+  * Submit the job with the following command:
+    qsub submit.sh
+  * Verify that the job will generate 12 PNG files in the current folder.
+    Note: you may download images to your local computer with scp.
+          The visual result can show errors on some lines of pixels.
+          The goal of this exercise is only to practice job submission.
+
+==== Why 12 tasks? ====
+On Guillimin, there are nodes with 12 and 16 cores. While this cluster allows
+serial jobs (ppn<12), it is always better to pack serial tasks together and
+create a parallel job (ppn=12). In this workshop, we are using nodes having
+12 cores.
