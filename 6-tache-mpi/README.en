@@ -1,0 +1,43 @@
+So far, we have used the serial version of filterImage.exe. In the parent
+directory, there is a parallel version of the same tool: filterImage-mpi.exe.
+This one uses MPI to split the workload between processes.
+
+==== MPI ====
+An MPI application can split the workload on multiple compute nodes. Each part
+of the task is computed in parallel in different processes. "MPI" means
+"Message Passing Interface". Coding an MPI application is relatively complex.
+On the other hand, using such an application is still simple.
+All that is needed to do is to use the "mpiexec" command. For example:
+
+  mpiexec ../filterImage-mpi.exe
+
+Note: if some application does not use MPI to split the workload, all created
+      processes will do the same workload, and all the workload many times.
+      For example: mpiexec hostname
+Note: mpiexec is smart enough to get your PBS environment and determine how
+      many processes must be started on each node.
+
+==== Instructions ====
+The filterImage-mpi.exe application uses MPI to process multiple images
+simultaneously on multiple nodes. For this exercise, we will process all 29
+pictures with 24 processors. Some cores will process 2 images. Still, we will
+do more work thanks to the additional compute resources.
+
+  * Modify submit.sh to request 2 full nodes of 12 cores
+  * Complete the mpiexec command with filterImage-mpi.exe
+  * Submit the job with the following command:
+    qsub submit.sh
+  * Verify that you get 3 * 29 PNG files. The factor of 3 is because
+    of the 3 filters: grayscale, add_noise, monochrome
+
+==== Bonus information ====
+- The grayscale filter removes color, which can save some space
+- The add_noise filter adds noise to the image
+- The monochrome will select either white or black as the final color
+
+Without the add_noise filter, the monochrome filter would generate large
+white and black regions. By adding noise, dark regions may randomly get
+some light pixels, and light regions may randomly get some dark pixels.
+Consequently, the final result after the monochrome filter looks a bit
+like the dithering effect:
+  https://en.wikipedia.org/wiki/Dither
