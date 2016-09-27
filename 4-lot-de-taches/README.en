@@ -1,0 +1,73 @@
+Like in exercise #2, we want to apply a filter to multiple pictures.
+But this time, we want to apply different filters, one specific
+filter per PBS job. In this exercise, we will use a double strategy
+for parallel computing:
+- In each PBS job, we will use GNU parallel to process a set of pictures.
+- We will submit a job array in order to run multiple instances of the
+  same kind of job.
+
+==== (Reminder) GNU parallel ====
+GNU parallel is a powerful tool to execute parallel tasks. It supports two
+main input formats:
+ - Lists of values on the command line
+ - Lists of values in a file
+
+Please check the Calcul Quebec wiki for basic options:
+ - https://wiki.calculquebec.ca/w/GNU_parallel/en
+Please check the official documentation for advanced options:
+ - http://www.gnu.org/software/parallel/man.html
+
+For this exercise, we will reuse the output of the "ls" command with $( ).
+This will create our list of files for the parallel command.
+For example:
+
+   module load parallel/20150822
+   PICTURES=$(ls -1 ../../pictures/ | head -12)
+   parallel echo {1} ::: $PICTURES
+
+In this example, {1} refers to the first variable in the command template.
+The operator ":::" separates the template from values for the first variable.
+We could define multiple variables ({1}, {2}, etc.) by adding more ":::"
+operators at the end of the parallel command.
+
+On Calcul Quebec cluster, you must load an appropriate module in order to
+use the parallel command.
+ - Guillimin: parallel/20150822
+ - Colosse:   apps/gnu-parallel
+
+==== Job Array ====
+Job arrays are a parallel mechanism offered by the scheduler. The global job
+array is separated in multiple job instances that are started independently.
+Each job instance will be identified by a unique $PBS_ARRAYID. The possible
+values are defined by the job array.
+
+The syntax to define a job is the following:
+
+  #PBS -t 1-5       # 1, 2, 3, 4, 5
+  #PBS -t 1,3-7,11  # 1, 3, 5, 6, 7, 11
+
+==== An Array in Bash ====
+Bash supports arrays. A Bash array can be declared the following way:
+
+  MY_ARRAY=(value1 value2 value3 value4)
+
+To access a specific element in the array:
+
+  ${MY_ARRAY[$i]}
+
+where $i would be a variable having values from 0 through 3.
+That means 'value1' is at position 0, and 'value4' is at position 3.
+
+==== Instructions ====
+We will use the parallel command to transform the last 4 pictures in
+"../../pictures". We will also use a job array to apply a different
+filter for each job.
+
+  * Modify submit.sh to define a job array such that the index will go
+    from 0 to 8 inclusive.
+  * Use the value of $PBS_ARRAYID to get the proper filter in FILTERS.
+  * Submit the job array with the following command:
+    qsub submit.sh
+  * Verify that the job array is running fine. 36 PNG files should have
+    been created. To monitor your job array:
+    qstat -t -u $USER
