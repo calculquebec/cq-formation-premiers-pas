@@ -14,16 +14,17 @@ using namespace Magick;
 using namespace boost;
 using namespace boost::filesystem;
 
-string applyFilter(const string & filter, const string & filename)
+string applyFilter(const string & filter, const string & filename, const string srcdir="", const string dstdir="")
 {
 	int comm_rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
-    path pathname(filename);
-	string outfilename = pathname.stem().string() + "_" + filter + pathname.extension().string();
+	string full_filename = srcdir + "/" + filename;
+	path pathname(full_filename);
+	string outfilename = dstdir + pathname.stem().string() + "_" + filter + pathname.extension().string();
 	try {
-		cout << "Application du filtre " << filter << " sur l'image " << filename << endl;
+		cout << "Application du filtre " << filter << " sur l'image " << full_filename << endl;
 		Image image;
-		image.read(filename);
+		image.read(full_filename);
 		if (filter == "grayscale") {
 			image.quantizeColorSpace( GRAYColorspace );
 			image.quantize( );
@@ -104,7 +105,7 @@ int main(int argc, char ** argv)
 	{
 		string filename = vFilenames[i];
 		for (auto filter : vFilters) {
-			filename = applyFilter(filter, filename);
+			filename = applyFilter(filter, filename, srcdir, dstdir);
 			if (filename == "") exit(1);
 		}
 	}
