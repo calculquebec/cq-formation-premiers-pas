@@ -7,7 +7,7 @@
 #SBATCH --account=def-mboisson 		      # Use your own account here
 
 module load boost
-SRCDIR=/project/6002799/photos
+SRCDIR=/project/6002799/photos/
 
 ../filterImage.exe --srcdir $SRCDIR --filters grayscale --files AG8B9528.png
 

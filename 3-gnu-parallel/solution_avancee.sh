@@ -7,7 +7,7 @@
 #SBATCH --account=def-mboisson 		      # Use your own account here
 
 module load boost
-SRCDIR=/project/6002799/photos
+SRCDIR=/project/6002799/photos/
 
 parallel ../filterImage.exe --srcdir $SRCDIR --filters {2} --files {1} ::: $(ls $SRCDIR) ::: grayscale negate
 

@@ -9,7 +9,7 @@
 #SBATCH --account=def-mboisson 		      # Use your own account here
 
 module load boost
-SRCDIR=/project/6002799/photos
+SRCDIR=/project/6002799/photos/
 
 #####
 # TODO: Ajouter la directive parallel avec les bons fichiers et arguments

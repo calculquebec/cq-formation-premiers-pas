@@ -1,14 +1,16 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem-per-cpu=1G
+#SBATCH --time=5:00
+#SBATCH --account=def-mboisson 		      # Use your own account here
 #####
 # TODO: Ajouter la bonne option pour le lot de tâches
 #####
 
-module load libs/boost libs/image_magick
-module load apps/gnu-parallel
-cd ${PBS_O_WORKDIR}
+module load boost
+SRCDIR=/project/6002799/photos/
 
 # Liste des filtres disponibles
 FILTERS=(grayscale edges emboss negate solarize flip flop monochrome add_noise)
@@ -17,6 +19,6 @@ FILTERS=(grayscale edges emboss negate solarize flip flop monochrome add_noise)
 # TODO: Utiliser le tableau FILTERS pour sélectionner le bon filtre en fonction de la valeur
 # de MOAB_JOBARRAYINDEX
 #####
-parallel ../filterImage.exe --filters FIXME --files ../photos/{1} ::: $(ls ../photos)
+parallel ../filterImage.exe --srcdir $SRCDIR --filters FIXME --files {1} ::: $(ls $SRCDIR)
 
 

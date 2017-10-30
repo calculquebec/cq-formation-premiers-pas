@@ -8,7 +8,7 @@
 
 # TODO: load correct modules here
 module load ....
-SRCDIR=/project/6002799/photos
+SRCDIR=/project/6002799/photos/
 
 ####
 # TODO: Ajoutez les bons arguments à la commande ../filterImage.exe pour transformer l'image AG8B9528.png en grayscale. 

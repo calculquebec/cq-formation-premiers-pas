@@ -12,13 +12,13 @@ Notez que si l'application en question n'a pas été programmée pour tirer prof
 lancée plusieurs fois, avec les mêmes paramètres.
 
 ==== Instructions ====
-L'application filterImage.exe utilise MPI pour traiter plusieurs images en même temps. Comme le répertoire "../photos"
+L'application filterImage.exe utilise MPI pour traiter plusieurs images en même temps. Comme le répertoire de photos
 contient 30 images, nous voudrons utiliser 30 coeurs de calcul afin de les traiter plus rapidement.
 
-  * Modifier submit.sh pour demander 4 noeuds de calcul (32 coeurs)
+  * Modifier submit.sh pour demander 32 tâches par noeud et 1 CPU par tâche.
   * Lancer filterImage.exe avec mpiexec
   * Soumettre la tâche avec la commande
-    msub submit.sh
+    sbatch submit.sh
   * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
     votre répertoire.
 

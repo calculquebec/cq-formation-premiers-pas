@@ -18,7 +18,7 @@ string applyFilter(const string & filter, const string & filename, const string 
 {
 	int comm_rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
-	string full_filename = srcdir + "/" + filename;
+	string full_filename = srcdir + filename;
 	path pathname(full_filename);
 	string outfilename = dstdir + pathname.stem().string() + "_" + filter + pathname.extension().string();
 	try {
