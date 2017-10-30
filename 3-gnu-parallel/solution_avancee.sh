@@ -1,18 +1,14 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem-per-cpu=1G
+#SBATCH --time=5:00
+#SBATCH --account=def-mboisson 		      # Use your own account here
 
-module load libs/boost libs/image_magick
-cd ${PBS_O_WORKDIR}
-####
-# TODO: Charger le module gnu-parallel
-####
-module load apps/gnu-parallel
+module load boost
+SRCDIR=/project/6002799/photos
 
-#####
-# TODO: Ajouter la directive parallel avec les bons fichiers et arguments
-#####
-parallel ../filterImage.exe --filters {2} --files ../photos/{1} ::: $(ls ../photos) ::: grayscale negate
+parallel ../filterImage.exe --srcdir $SRCDIR --filters {2} --files {1} ::: $(ls $SRCDIR) ::: grayscale negate
 
 
