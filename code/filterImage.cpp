@@ -70,6 +70,7 @@ int main(int argc, char ** argv)
 	string srcdir, dstdir;
 	vector<string> vFilters;
 	vector<string> vFilenames;
+	bool combined;
 	
 	namespace po = program_options;
 	po::options_description desc("Options");
@@ -78,6 +79,7 @@ int main(int argc, char ** argv)
 		("srcdir,i",po::value<string>(&srcdir)->default_value(""),"Repertoire source ?")
 		("dstdir,o",po::value<string>(&dstdir)->default_value(""), "Repertoire de destination ?")
 		("filters",po::value<vector<string> >(&vFilters)->multitoken(), "Filtre(s) à appliquer : grayscale, edges, emboss, negate, solarize, flip, flop, monochrome, add_noise")
+		("combined",po::value<bool>(&combined)->default_value(false), "Est-ce que les filtres doivent être combinés (appliqués les uns après les autres sur la même image) ?")
 		("files",po::value<vector<string> >(&vFilenames)->multitoken(), "Liste de fichiers ?")
 		;
 	po::variables_map vm;
@@ -101,12 +103,23 @@ int main(int argc, char ** argv)
 	size_t start = comm_rank;
 	size_t step_size = comm_size;
 
-	for (size_t i=start; i<nb_images; i+=step_size)
-	{
-		string filename = vFilenames[i];
-		for (auto filter : vFilters) {
-			filename = applyFilter(filter, filename, srcdir, dstdir);
-			if (filename == "") exit(1);
+	if (combined) {
+		for (size_t i=start; i<nb_images; i+=step_size)
+		{
+			string filename = vFilenames[i];
+			for (auto filter : vFilters) {
+				filename = applyFilter(filter, filename, srcdir, dstdir);
+				if (filename == "") exit(1);
+			}
+		}
+	}
+	else {
+		for (size_t i=start; i<nb_images*vFilters.size(); i+=step_size)
+		{
+			size_t file_i = i%nb_images;
+			size_t filter_i = (i / nb_images);
+			string filename = vFilenames[file_i];
+			applyFilter(vFilters[filter_i], filename, srcdir, dstdir);
 		}
 	}
 

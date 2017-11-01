@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=32
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=1G
@@ -10,6 +10,8 @@ module load boost
 SRCDIR=/project/6002799/photos/
 
 
-mpiexec ../filterImage.exe --filters monochrome --files $SRCDIR/*
+FILTERS="grayscale edges emboss negate solarize flip flop monochrome add_noise"
+
+mpiexec ../filterImage.exe --filters $FILTERS --files $SRCDIR/*
 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 ##### 
-# TODO: Changer la configuration pour utiliser 32 tâches par noeud avec 1 CPU par tâche
+# TODO: Changer la configuration pour utiliser 32 tâches par noeud, 2 noeuds et 1 CPU par tâche
 #####
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -12,9 +12,11 @@
 module load boost
 SRCDIR=/project/6002799/photos/
 
+FILTERS="grayscale edges emboss negate solarize flip flop monochrome add_noise"
+
 ####
 # TODO: Appeler l'exécutable ../filterImage.exe avec mpiexec
 ####
- ../filterImage.exe --filters monochrome --files $SRCDIR/*
+ ../filterImage.exe --filters $FILTERS --files $SRCDIR/*
 
 

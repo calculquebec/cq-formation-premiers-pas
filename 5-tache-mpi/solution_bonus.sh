@@ -9,6 +9,6 @@
 module load boost
 SRCDIR=/project/6002799/photos/
 
-mpiexec ../filterImage.exe --filters add_noise monochrome --files $SRCDIR/*
+mpiexec ../filterImage.exe --filters add_noise monochrome --combined true --files $SRCDIR/*
 
 
