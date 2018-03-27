@@ -11,7 +11,7 @@ module load ....
 SRCDIR=/project/6002799/photos/
 
 ####
-# TODO: Ajoutez les bons arguments à la commande ../filterImage.exe pour transformer l'image AG8B9528.png en grayscale. 
+# TODO: Ajoutez les bons arguments à la commande ../filterImage.exe pour transformer l'image VAFB2018.jpg en grayscale. 
 # Utilisez ../filterImage.exe --help afin de trouver les arguments à utiliser
 ####
 

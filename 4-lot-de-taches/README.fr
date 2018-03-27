@@ -38,7 +38,7 @@ Nous allons utiliser la commande parallel pour transformer la totalité des phot
 un lot de tâches pour appliquer des transformations différentes.
 
   * Modifier submit.sh pour définir un lot de tâches dont l'indice variera de 0 à 8
-  * Utiliser la valeur de $MOAB_JOBARRAYINDEX pour accéder aux éléments du tableau FILTERS.
+  * Utiliser la valeur de $SLURM_ARRAY_TASK_ID pour accéder aux éléments du tableau FILTERS.
   * Soumettre la tâche avec la commande
     sbatch submit.sh
   * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans

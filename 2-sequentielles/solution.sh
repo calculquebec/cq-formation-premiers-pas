@@ -6,9 +6,9 @@
 #SBATCH --time=5:00
 #SBATCH --account=def-mboisson 		      # Use your own account here
 
-module load boost
+module load gcc boost
 SRCDIR=/project/6002799/photos/
 
-../filterImage.exe --srcdir $SRCDIR --filters grayscale --files AG8B9528.png
+../filterImage.exe --srcdir $SRCDIR --filters grayscale --files VAFB2018.jpg
 
 

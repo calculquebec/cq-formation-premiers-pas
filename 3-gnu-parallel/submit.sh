@@ -14,6 +14,6 @@ SRCDIR=/project/6002799/photos/
 #####
 # TODO: Ajouter la directive parallel avec les bons fichiers et arguments
 #####
-../filterImage.exe --filters grayscale --srcdir $SRCDIR --files <fichier.png>
+../filterImage.exe --filters grayscale --srcdir $SRCDIR --files <fichier.jpg>
 
 

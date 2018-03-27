@@ -4,14 +4,11 @@ Pour ce faire, nous allons utiliser un outil de conversion d'images nommé "filt
 
 ===== Récupérer le jeu de données =====
 Pour les exercices, nous allons utiliser un jeu de données composé de photos haute résolution. 
-Ces photos sont situées dans le dossier /project/6002799/photos  sur Cedar et Graham.
+Ces photos sont situées dans le dossier /project/6002799/photos.
 
 ===== Récupérer les exercices =====
 Les exercices sont hébergés sur Github, à l'adresse suivante: 
-https://github.com/calculquebec/cq-formation-premiers-pas/tree/ccservers
-
-Vous pouvez les récupérer en exécutant la commande
-/home/mboisson/prepare_formation.sh
+https://github.com/calculquebec/cq-formation-premiers-pas/tree/slurmcloud
 
 ===== Compilation de l'outil ======
 L'outil de conversion d'image doit d'abord être créé. Pour ce faire, vous devez d'abord charger les bons modules. 
@@ -20,9 +17,9 @@ trouver les bons modules avec la commande
 
   module avail
 
-Par exemple, sur Cedar et Graham, vous devez charger les modules suivants :
+Vous devez charger les modules suivants :
 
-  module load boost
+  module load gcc boost
 
 Lorsque les modules sont chargés, vous pouvez compiler l'exécutable avec la commande : 
 
