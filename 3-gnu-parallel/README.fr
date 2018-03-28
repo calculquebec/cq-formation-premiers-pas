@@ -27,7 +27,7 @@ commande.
 ==== Instructions ====
 Nous allons utiliser la commande parallel pour transformer la totalité des photos du répertoire "/project/6002799/photos".
 
-  * Ajouter l'option --cpus-per-task à l'entête de fichier de soumission pour utiliser 32 coeurs
+  * Ajouter l'option --cpus-per-task à l'entête de fichier de soumission pour utiliser 2 coeurs
   * Utiliser la commande parallel et
     la liste des fichiers du répertoire "/project/6002799/photos".
   * Soumettre la tâche avec la commande
