@@ -1,6 +1,6 @@
 #!/bin/bash
 ##### 
-# TODO: Changer la configuration pour utiliser 32 tâches par noeud, 2 noeuds et 1 CPU par tâche
+# TODO: Changer la configuration pour utiliser 2 tâches par noeud, 2 noeuds et 1 CPU par tâche
 #####
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
