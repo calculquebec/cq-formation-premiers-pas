@@ -47,6 +47,6 @@ Voici pour quel type de tâches chacun des exercices est pertinent :
     Cet exercice est utile si vous avez un très grand nombre de tâches (plusieurs dizaines, voire des centaines ou milliers)
 
   * 5-tache-mpi
-    Cet exercice est utile si vous avez des tâhces parallélisées avec MPI, qui peuvent utiliser plusieurs noeuds de calcul.
+    Cet exercice est utile si vous avez des tâches parallélisées avec MPI, qui peuvent utiliser plusieurs noeuds de calcul.
 
 
