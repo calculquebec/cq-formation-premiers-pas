@@ -5,10 +5,11 @@ Nous allons utiliser les deux concepts ci-dessus afin de transformer une image e
 à l'aide de l'utilitaire filterImage.exe.
 
   * Modifier submit.sh pour charger les modules requis et appeler filterImage.exe afin de
-    transformer l'image AG8B9528.png en tons de gris.
+    transformer une première photo en tons de gris.
   * Soumettre la tâche avec la commande
-    sbatch submit.sh
+
+   sbatch submit.sh
+
   * Vérifier que la tâche s'exécute correctement. Un fichier devrait apparaître dans votre 
     répertoire. Vous pouvez le télécharger avec Globus afin de vérifier qu'il est bien en noir
     et blanc.
-

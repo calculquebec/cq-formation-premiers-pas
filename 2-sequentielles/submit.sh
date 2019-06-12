@@ -1,21 +1,22 @@
 #!/bin/bash
+#SBATCH --account=def-sponsor00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem-per-cpu=1G
+#SBATCH --mem-per-cpu=1000M
 #SBATCH --time=5:00
-#SBATCH --account=def-mboisson 		      # Use your own account here
+#SBATCH --job-name=ex2
 
-# TODO: load correct modules here
+# TODO: Charger les modules nécessaires
 module load ....
-SRCDIR=/project/6002799/photos/
+
+# TODO: Ajuster, au besoin, le chemin suivant
+SRCDIR=/project/def-sponsor00/photos/
 
 ####
-# TODO: Ajoutez les bons arguments à la commande ../filterImage.exe pour transformer l'image VAFB2018.jpg en grayscale. 
+# TODO: Ajouter les bons arguments à la commande ../filterImage.exe
+#       pour transformer une première photo en grayscale.
 # Utilisez ../filterImage.exe --help afin de trouver les arguments à utiliser
 ####
 
 ../filterImage.exe --srcdir $SRCDIR ......
-
-
-
