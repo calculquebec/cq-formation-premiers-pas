@@ -12,7 +12,7 @@ CPPFLAGS = -g --std=c++11 -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=
 GLOBAL_DEPEND = Makefile
 all:: $(EXES)
 clean:
-	rm -rf $(EXES) $(OBJECTS) *.o *.openss *.txt *.exe *.bin */*.png */*.out
+	rm -rf $(EXES) $(OBJECTS) *.o *.openss *.txt *.exe *.bin */*.jpg */*.png */*.out
 
 filterImage.exe: code/filterImage.cpp $(GLOBAL_DEPEND)
 	mpic++ $(CPPFLAGS) $< -o $@ $(DEFINES) $(LIBS)

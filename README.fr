@@ -4,22 +4,26 @@ Pour ce faire, nous allons utiliser un outil de conversion d'images nommé "filt
 
 ===== Récupérer le jeu de données =====
 Pour les exercices, nous allons utiliser un jeu de données composé de photos haute résolution. 
-Ces photos sont situées dans le dossier /project/6002799/photos.
+Ces photos sont situées dans le dossier /project/def-sponsor00/photos.
 
 ===== Récupérer les exercices =====
-Les exercices sont hébergés sur Github, à l'adresse suivante: 
-https://github.com/calculquebec/cq-formation-premiers-pas/tree/slurmcloud
+Les exercices sont hébergés sur Github, à l'adresse suivante :
+https://github.com/calculquebec/cq-formation-premiers-pas
 
-===== Compilation de l'outil ======
+Vous pouvez les récupérer en exécutant la commande suivante :
+
+   git clone https://github.com/calculquebec/cq-formation-premiers-pas.git exercises
+
+===== Compilation de l'outil =====
 L'outil de conversion d'image doit d'abord être créé. Pour ce faire, vous devez d'abord charger les bons modules. 
 La compilation requière la bibliothèque boost. Vous pouvez
 trouver les bons modules avec la commande
 
-  module avail
+   module avail
 
 Vous devez charger les modules suivants :
 
-  module load gcc boost
+   module load gcc boost
 
 Lorsque les modules sont chargés, vous pouvez compiler l'exécutable avec la commande : 
 
