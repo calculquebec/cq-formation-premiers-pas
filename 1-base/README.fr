@@ -16,5 +16,4 @@ Instructions :
 
 Informations complémentaires : 
   * Le fichier slurm-<numero>.out contient la sortie normale standard (stdout) et la sortie d'erreur (stderr)
-    de la tâche. Dans le cas de cet exercice, il devrait contenir le mot "bonjour".
-
+    de la tâche. Dans le cas de cet exercice, il devrait contenir le mot "Bonjour".
