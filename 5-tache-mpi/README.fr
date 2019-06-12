@@ -1,0 +1,41 @@
+L'utilitaire filterImage.exe utilisé dans les exercices précédent est en fait un exécutable qui peut être
+utilisé en parallèle sur plusieurs noeuds avec MPI.
+
+==== MPI ====
+Une application MPI est une application qui peut utiliser plusieurs noeuds de calcul en parallèle. MPI signifie
+"Message Passing Interface". Écrire une application MPI est en général plutôt complexe. Par contre, en utiliser une
+est simple. Il suffit généralement de lancer l'application avec la commande "mpiexec", par exemple :
+
+  mpiexec ../filterImage.exe ....
+
+Notez que si l'application en question n'a pas été programmée pour tirer profit de MPI, elle sera tout simplement
+lancée plusieurs fois, avec les mêmes paramètres.
+
+==== Instructions ====
+L'application filterImage.exe utilise MPI pour traiter plusieurs images en même temps. Comme le répertoire de photos
+contient 29 images, et que nous pouvons appliquer 9 filtres différents, cela nous permet d'utiliser en théorie jusqu'à 261 coeurs en parallèle. Nous nous limiterons pour cette formation à 64 coeurs en parallèle, soit deux noeuds de calcul de Cedar ou Graham.
+
+  * Modifier submit.sh pour demander 32 tâches par noeud, 2 noeuds et 1 CPU par tâche.
+  * Lancer filterImage.exe avec mpiexec
+  * Soumettre la tâche avec la commande
+    sbatch submit.sh
+  * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
+    votre répertoire.
+
+==== Bonus ====
+Par défaut, lorsque l'exécutable filterImage.exe reçoit une liste
+de filtres comme paramètre, il applique les filtres séparément
+sur chaque image. Cela rend la parallélisation très facile.
+L'exécutable prend aussi une option "--combined true" qui permet
+de plutôt combiner les filtres listés, en ordre. En d'autres
+mots, l'exécutable applique le premier filtre sur l'image originale,
+puis le deuxième filtre sur le résultat du premier, et ainsi
+de suite. Malheureusement, appliquer les filtres de cette façon ne permet pas
+autant de parallélisation, puisque l'application de chaque filtre
+est dépendant du résultat du filtre précédent.
+
+Néanmoins, cela permet d'obtenir des résultats intéressants. En utilisant un seul 
+noeud de calcul (pour éviter de gaspiller trop de ressources), combinez le
+filtre "add_noise" au filtre "monochrome". Comparez l'image résultante à
+la version monochrome seulement. Que remarquez-vous ? Sauriez-vous l'expliquer ?
+

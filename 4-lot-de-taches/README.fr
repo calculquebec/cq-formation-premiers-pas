@@ -1,45 +1,25 @@
-Comme dans l'exercice #2, on veut appliquer des filtres à plusieurs images. On veut par contre appliquer
+Comme dans l'exercice #3, on veut appliquer des filtres à plusieurs images. On veut par contre appliquer
 plusieurs filtres différents. Afin d'utiliser les ressources de calcul de plusieurs noeuds, nous utiliserons
 une double stratégie de parallélisation. Sur un noeud de calcul, nous traiterons plusieurs images à l'aide de
 GNU parallel. Nous distribuerons par contre les différents filtres sur différents mieux en utilisant
 un lot de tâches.
 
 ==== GNU parallel ====
-GNU parallel est un outil très puissant pour exécuter des tâches en parallèle. Il supporte deux principaux
-formats d'entrée pour spécifier une liste de paramètres à varier :
-  * liste de fichiers/de valeurs sur la ligne de commande
-  * liste contenu dans un fichier
-
-Vous pouvez vous référer au wiki de Calcul Québe [https://wiki.calculquebec.ca/w/GNU_Parallel] pour les
-options de base, ou à la documentation officielle [http://www.gnu.org/software/parallel/man.html] pour les
-options avancées.
-
-Pour cet exercice, nous utiliserons la capture de la sortie de la commande "ls" avec $( ) pour créer une liste
-de fichiers à traiter. Par exemple, pour afficher le contenu du répertoire "../photos" en parallèle, on pourrait
-utiliser GNU parallel de la façon suivante :
-
-  parallel echo {1} ::: $(ls ../photos)
-
-Dans cette commande, {1} identifie la première variable. L'opérateur ":::" sépare la commande des variables.
-On pourrait avoir plusieurs variables ({1}, {2}, etc) en ajoutant des opérateurs ":::" à la fin de la
-commande.
-
-Sur les serveurs de Calcul Québec, il faut généralement charger un module afin de pouvoir utiliser la commande
-parallel.
+Voir le README.fr du répertoire 3-gnu-parallel pour la description de cet outil.
 
 
 ==== Lots de tâches ====
 Les lots de tâches sont une fonctionnalité de parallélisation fournie directement par l'ordonnanceur. L'ordonnanceur
-séparera la tâche en plusieurs sous-tâches, et définiera une variable nommée ${MOAB_JOBARRAYINDEX} dans l'environnement
+séparera la tâche en plusieurs sous-tâches, et définiera une variable nommée ${SLURM_ARRAY_TASK_ID} dans l'environnement
 de chaque sous-tâche. Cette variable prendra une valeur différente dans chaque sous-tâche.
 
 La syntaxe à utiliser est la suivante :
 
-  #PBS -t [<debut>-<fin>:<saut>]
+  #SBATCH --array=<debut>-<fin>:<saut> 
 
 Par exemple, pour un lot de 5 tâches, dont les indices prendraient les valeurs 1, 3, 5, 7, 9, on utiliserait :
 
-  #PBS -t [1-9:2]
+  #SBATCH --array=1-9:2
 
 ==== Tableaux en bash ====
 Au cours de l'introduction à la ligne de commande bash, nous n'avons pas mentionné que Bash supporte les tableaux.
@@ -54,13 +34,13 @@ On peut ensuite accéder aux éléments de ce tableau avec la syntaxe :
 où $i serait une variable prenant les valeurs de 0 à 3.
 
 ==== Instructions ====
-Nous allons utiliser la commande parallel pour transformer la totalité des photos du répertoire "../photos", et
+Nous allons utiliser la commande parallel pour transformer la totalité des photos du répertoire de photos, et
 un lot de tâches pour appliquer des transformations différentes.
 
   * Modifier submit.sh pour définir un lot de tâches dont l'indice variera de 0 à 8
-  * Utiliser la valeur de $MOAB_JOBARRAYINDEX pour accéder aux éléments du tableau FILTERS.
+  * Utiliser la valeur de $SLURM_ARRAY_TASK_ID pour accéder aux éléments du tableau FILTERS.
   * Soumettre la tâche avec la commande
-    msub submit.sh
+    sbatch submit.sh
   * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
     votre répertoire.
 

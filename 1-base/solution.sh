@@ -1,5 +1,7 @@
 #!/bin/bash
-#PBS -A colosse-users
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=16:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=2:00
+#SBATCH --account=def-mboisson 		      # Use your own account here
 echo "bonjour"
+

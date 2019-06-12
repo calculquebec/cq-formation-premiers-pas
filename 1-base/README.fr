@@ -3,23 +3,18 @@ le concept de soumission de tâches.
 
 Instructions :
   * Modifier le fichier submit.sh pour inclure les ressources demandées. Nous demanderons
-    1 noeud avec 8 coeurs par noeud, pour une durée de 16 minutes.
-  * Modifier le fichier submit.sh pour indiquer le projet "colosse-users". Ceci est un projet
-    spécial utilisé pour les besoins de cette formation.
+    1 noeud avec 1 tâche par noeud, pour une durée de 2 minutes.
+  * Modifier le fichier submit.sh pour indiquer le projet à utiliser.
   * Soumettre la tâche avec la commande
-    msub submit.sh
+    sbatch submit.sh
 
   * Noter le numéro rapporté par la commande.
   * Vérifier que la tâche a été soumise avec la commande
-    showq -u $USER
+    squeue -u $USER
 
-  * Vérifier le résultat de la tâche dans les fichiers <numero>.err <numero>.out
+  * Vérifier le résultat de la tâche dans le fichier slurm-<numero>.out
 
 Informations complémentaires : 
-  * Un numéro de projet typique pour un compte Calcul Canada aurait la forme xxx-aaa-yy où x et y
-    sont des lettres, et où les a sont des chiffres.
-  * Le fichier <numero>.err contient la sortie d'erreur standard (stderr) de la tâche. Si votre tâche a
-    échoué, c'est le premier endroit que vous devriez vérifier
-  * Le fichier <numero>.out contient la sortie normale standard (stdout) de la tâche. Dans le cas de
-    cet exercice, il devrait contenir le mot "bonjour".
+  * Le fichier slurm-<numero>.out contient la sortie normale standard (stdout) et la sortie d'erreur (stderr)
+    de la tâche. Dans le cas de cet exercice, il devrait contenir le mot "bonjour".
 
