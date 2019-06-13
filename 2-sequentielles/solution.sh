@@ -11,4 +11,4 @@ module load gcc boost
 
 SRCDIR=/project/def-sponsor00/photos/
 
-../filterImage.exe --srcdir $SRCDIR --filters grayscale --files $(ls $SRCDIR | head -1)
+../filterImage.exe --srcdir $SRCDIR --files $(ls $SRCDIR|head -1) --filters grayscale

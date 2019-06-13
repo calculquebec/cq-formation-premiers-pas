@@ -76,11 +76,11 @@ int main(int argc, char ** argv)
 	po::options_description desc("Options");
 	desc.add_options()
 		("help,h","Print help messages")
-		("srcdir,i",po::value<string>(&srcdir)->default_value(""),"Repertoire source ?")
+		("srcdir,i",po::value<string>(&srcdir)->default_value(""), "Repertoire source ?")
 		("dstdir,o",po::value<string>(&dstdir)->default_value(""), "Repertoire de destination ?")
+		("files",po::value<vector<string> >(&vFilenames)->multitoken(), "Liste de fichiers ?")
 		("filters",po::value<vector<string> >(&vFilters)->multitoken(), "Filtre(s) à appliquer : grayscale, edges, emboss, negate, solarize, flip, flop, monochrome, add_noise")
 		("combined",po::value<bool>(&combined)->default_value(false), "Est-ce que les filtres doivent être combinés (appliqués les uns après les autres sur la même image) ?")
-		("files",po::value<vector<string> >(&vFilenames)->multitoken(), "Liste de fichiers ?")
 		;
 	po::variables_map vm;
 	try {
