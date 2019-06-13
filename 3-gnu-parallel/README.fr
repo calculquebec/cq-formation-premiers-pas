@@ -1,4 +1,4 @@
-Dans cet exercice,  on veut appliquer le filtre "grayscale" à plusieurs images.
+Dans cet exercice, on veut appliquer le filtre "grayscale" à plusieurs images.
 Afin d'utiliser la totalité des coeurs d'un noeud de calcul, nous voulons lancer l'exécutable
 plusieurs fois en parallèle.
 
@@ -11,27 +11,28 @@ formats d'entrée pour spécifier une liste de paramètres à varier :
   * liste contenu dans un fichier
 
 Vous pouvez vous référer au wiki de Calcul Canada pour les options de base [https://docs.computecanada.ca/wiki/GNU_Parallel] 
-ou à la documentation officielle [http://www.gnu.org/software/parallel/man.html] pour les
-options avancées.
+ou à la documentation officielle [http://www.gnu.org/software/parallel/man.html] pour les options avancées.
 
 Pour cet exercice, nous utiliserons la capture de la sortie de la commande "ls" avec $( ) pour créer une liste
-de fichiers à traiter. Par exemple, pour afficher le contenu du répertoire "/project/6002799/photos" en parallèle, on pourrait
-utiliser GNU parallel de la façon suivante :
+de fichiers à traiter. Par exemple, pour afficher le contenu du répertoire "/project/def-sponsor00/photos" en parallèle,
+on pourrait utiliser GNU parallel de la façon suivante :
 
-  parallel echo {1} ::: $(ls /project/6002799/photos)
+  parallel echo {1} ::: $(ls /project/def-sponsor00/photos)
 
 Dans cette commande, {1} identifie la première variable. L'opérateur ":::" sépare la commande des variables.
 On pourrait avoir plusieurs variables ({1}, {2}, etc) en ajoutant des opérateurs ":::" à la fin de la
 commande.
 
 ==== Instructions ====
-Nous allons utiliser la commande parallel pour transformer la totalité des photos du répertoire "/project/6002799/photos".
+Nous allons utiliser la commande parallel pour transformer la totalité des photos du répertoire "/project/def-sponsor00/photos".
 
   * Ajouter l'option --cpus-per-task à l'entête de fichier de soumission pour utiliser 2 coeurs
   * Utiliser la commande parallel et
-    la liste des fichiers du répertoire "/project/6002799/photos".
+    la liste des fichiers du répertoire "/project/def-sponsor00/photos".
   * Soumettre la tâche avec la commande
-    sbatch submit.sh
+
+   sbatch submit.sh
+
   * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
     votre répertoire.
 
@@ -42,5 +43,5 @@ aux images.
 ==== Pas besoin de spécifier le nombre de tâches simultanées ? ====
 Par défaut, GNU parallel suppose que les tâches à exécuter utilisent un seul coeur, et lance autant de
 tâches en parallèle que le nombre de coeurs disponibles. Vous pouvez changer ce comportement avec
-l'option "-j"   (voir la documentation de parallel pour davantage d'informations).
+l'option "-j" (voir la documentation de parallel pour davantage d'informations).
 
