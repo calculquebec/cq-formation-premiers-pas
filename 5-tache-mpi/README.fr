@@ -12,10 +12,12 @@ Notez que si l'application en question n'a pas été programmée pour tirer prof
 lancée plusieurs fois, avec les mêmes paramètres.
 
 ==== Instructions ====
-L'application filterImage.exe utilise MPI pour traiter plusieurs images en même temps. Comme le répertoire de photos
-contient 29 images, et que nous pouvons appliquer 9 filtres différents, cela nous permet d'utiliser en théorie jusqu'à 261 coeurs en parallèle. Nous nous limiterons pour cette formation à 64 coeurs en parallèle, soit deux noeuds de calcul de Cedar ou Graham.
+L'application filterImage.exe utilise MPI pour traiter plusieurs images en même temps.
+Comme le répertoire de photos contient 29 images et que nous pouvons utiliser 9 filtres différents,
+cela nous permet d'utiliser en théorie jusqu'à 261 coeurs en parallèle. Nous nous limiterons pour
+cette formation à 4 coeurs en parallèle, soit deux noeuds et deux coeurs par noeuds.
 
-  * Modifier submit.sh pour demander 32 tâches par noeud, 2 noeuds et 1 CPU par tâche.
+  * Modifier submit.sh pour demander 2 noeuds, 2 tâches par noeud et 1 CPU par tâche.
   * Lancer filterImage.exe avec mpiexec
   * Soumettre la tâche avec la commande
     sbatch submit.sh
