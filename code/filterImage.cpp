@@ -106,9 +106,9 @@ int main(int argc, char ** argv)
 	if (combined) {
 		for (size_t i=start; i<nb_images; i+=step_size)
 		{
-			string filename = vFilenames[i];
+			string filename = srcdir + vFilenames[i];
 			for (auto filter : vFilters) {
-				filename = applyFilter(filter, filename, srcdir, dstdir);
+				filename = applyFilter(filter, filename, "", dstdir);
 				if (filename == "") exit(1);
 			}
 		}
