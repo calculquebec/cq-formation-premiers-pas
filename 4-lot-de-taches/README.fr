@@ -1,7 +1,7 @@
 Comme dans l'exercice #3, on veut appliquer des filtres à plusieurs images. On veut par contre appliquer
 plusieurs filtres différents. Afin d'utiliser les ressources de calcul de plusieurs noeuds, nous utiliserons
 une double stratégie de parallélisation. Sur un noeud de calcul, nous traiterons plusieurs images à l'aide de
-GNU parallel. Nous distribuerons par contre les différents filtres sur différents mieux en utilisant
+GNU parallel. Nous distribuerons par contre les différents filtres sur différents noeuds en utilisant
 un lot de tâches.
 
 ==== GNU parallel ====
@@ -10,7 +10,7 @@ Voir le README.fr du répertoire 3-gnu-parallel pour la description de cet outil
 
 ==== Lots de tâches ====
 Les lots de tâches sont une fonctionnalité de parallélisation fournie directement par l'ordonnanceur. L'ordonnanceur
-séparera la tâche en plusieurs sous-tâches, et définiera une variable nommée ${SLURM_ARRAY_TASK_ID} dans l'environnement
+séparera la tâche en plusieurs sous-tâches, et définira une variable nommée SLURM_ARRAY_TASK_ID dans l'environnement
 de chaque sous-tâche. Cette variable prendra une valeur différente dans chaque sous-tâche.
 
 La syntaxe à utiliser est la suivante :
@@ -38,10 +38,8 @@ Nous allons utiliser la commande parallel pour transformer la totalité des phot
 un lot de tâches pour appliquer des transformations différentes.
 
   * Modifier submit.sh pour définir un lot de tâches dont l'indice variera de 0 à 8
-  * Utiliser la valeur de $SLURM_ARRAY_TASK_ID pour accéder aux éléments du tableau FILTERS.
+  * Utiliser la valeur de SLURM_ARRAY_TASK_ID pour accéder aux éléments du tableau FILTERS.
   * Soumettre la tâche avec la commande
     sbatch submit.sh
   * Vérifier que la tâche s'exécute correctement. Des fichiers devraient apparaître dans
     votre répertoire.
-
-
