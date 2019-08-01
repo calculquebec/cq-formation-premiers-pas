@@ -1,0 +1,21 @@
+# For these R examples, make sure you have loaded these modules:
+
+module load gcc/7.3.0
+module load openmpi r/3.5.2
+
+
+# Install the "lme4" R package:
+
+R
+  install.packages("lme4")
+  q()
+
+
+# Demo 1
+
+Rscript ex1mclapply.R
+
+
+# Demo 2
+
+mkdir -p results log
