@@ -18,4 +18,5 @@ Rscript ex1mclapply.R
 
 # Demo 2
 
-mkdir -p results log
+mkdir -p log
+sbatch ex2mcmapply.sh
