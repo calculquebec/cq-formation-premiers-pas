@@ -94,7 +94,7 @@ filename <- base::tempfile(pattern = base::sprintf("scenario_%1.0f_sampleSize_%1
                                                    parameterIndex, 
                                                    sampleSize, 
                                                    noiseSD),
-                           tmpdir = "results",
+                           tmpdir = paste(Sys.getenv("PWD"), "results", sep="/"),
                            fileext = ".txt")
 
 utils::write.table(results,
