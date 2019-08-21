@@ -4,8 +4,9 @@ module load gcc/7.3.0
 module load openmpi r/3.5.2
 
 
-# Install the "lme4" R package:
+# Install the "lme4" R package (Warning: needs lots of memory!):
 
+salloc --time=1:00:00 --mem-per-cpu=1500M  # Others can compile on login node
 R
   install.packages("lme4")
   q()
