@@ -7,10 +7,6 @@
 #SBATCH --time=5:00
 #SBATCH --job-name=ex2
 
-# EN: Load all required modules
-# FR: Charger les modules nécessaires
-module load gcc boost
-
 # EN: If needed, adjust the following path
 # FR: Ajuster, au besoin, le chemin suivant
 SRCDIR=/project/def-sponsor00/photos/

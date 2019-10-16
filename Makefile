@@ -3,8 +3,6 @@
 # ############################
 EXES = filterImage.exe
 
-#MODULE_CMDS = module load libs/boost libs/image_magick
-
 CPP = g++
 CXX = mpic++
 LIBS = -lboost_program_options -lboost_filesystem -lboost_system $(shell Magick++-config --ldflags)

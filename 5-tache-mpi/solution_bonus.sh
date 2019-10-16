@@ -7,8 +7,6 @@
 #SBATCH --time=5:00
 #SBATCH --job-name=ex5
 
-module load gcc boost
-
 SRCDIR=/project/def-sponsor00/photos/
 
 mpiexec ../filterImage.exe --srcdir $SRCDIR --files $(ls $SRCDIR) --filters add_noise monochrome --combined true

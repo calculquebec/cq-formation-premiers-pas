@@ -3,8 +3,8 @@ In this exercise, we want to apply the "grayscale" filter to one picture.
 ==== Instructions ====
 We will use the filterImage.exe application to convert one picture to grayscale.
 
-  * Modify submit.sh in order to load required modules and call filterImage.exe
-    with the "grayscale" filter and one picture file
+  * Modify submit.sh in order to call filterImage.exe with the "grayscale"
+    filter and one picture file
   * Submit the job with the following command:
 
    sbatch submit.sh

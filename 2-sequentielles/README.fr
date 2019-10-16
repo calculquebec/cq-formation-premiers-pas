@@ -4,8 +4,8 @@ Dans cet exercice, on veut appliquer le filtre "grayscale" à une image.
 Nous allons utiliser les deux concepts ci-dessus afin de transformer une image en tons de gris
 à l'aide de l'utilitaire filterImage.exe.
 
-  * Modifier submit.sh pour charger les modules requis et appeler filterImage.exe afin de
-    transformer une première photo en tons de gris.
+  * Modifier submit.sh pour appeler filterImage.exe afin de transformer une première
+    photo en tons de gris.
   * Soumettre la tâche avec la commande
 
    sbatch submit.sh

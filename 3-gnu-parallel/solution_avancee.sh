@@ -7,8 +7,6 @@
 #SBATCH --time=5:00
 #SBATCH --job-name=ex3
 
-module load gcc boost
-
 SRCDIR=/project/def-sponsor00/photos/
 
 parallel ../filterImage.exe --srcdir $SRCDIR --files {1} --filters {2} ::: $(ls $SRCDIR) ::: grayscale negate

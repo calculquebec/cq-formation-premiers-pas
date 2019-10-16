@@ -11,8 +11,6 @@
 #####
 #SBATCH --job-name=ex4
 
-module load gcc boost
-
 SRCDIR=/project/def-sponsor00/photos/
 
 # Liste des filtres disponibles

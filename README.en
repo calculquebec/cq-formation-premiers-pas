@@ -28,6 +28,8 @@ need to load appropriate modules. The compilation requires GNU compilers and
 the BOOST library. To load these modules:
 
    module purge
+   module load arch/avx2
+   module load StdEnv
    module load gcc boost
    module list
 
